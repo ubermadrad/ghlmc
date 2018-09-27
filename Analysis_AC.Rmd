@@ -1,0 +1,63 @@
+---
+title: "Adrian Analysis"
+author: "Janna Abad"
+date: "October 19, 2017"
+output: 
+  html_document:
+    fig_height: 3
+    fig_width: 5
+---
+<!-- Don't edit in between this line and the one below -->
+```{r include=FALSE}
+# Don't delete this chunk if you are using the DataComputing package
+library(DataComputing)
+```
+*Source file* 
+```{r, results='asis', echo=FALSE}
+includeSourceDocuments()
+```
+<!-- Don't edit the material above this line -->
+
+```{r}
+#Set working directory and create a list of all the files you want to analyze:
+setwd("/Users/Owner/Desktop/FOLDER CONTAINING ZEN CSV OUTPUTS")
+fileNames <- list.files(pattern = '*.csv')
+
+#Use for loop to iterate through the working directory folder:
+for (fileName in fileNames) {
+  #Load .csv file and make data frame:
+  adriantest<-read.csv(fileName)
+  
+  #Remove first row - ZEN formats its .csv tables strangely, so you need to clean them up and     remove the first row before analysis:
+  adriantest2<-adriantest[-1,]
+  
+  #Set as numeric - ZEN's output is not numeric, so you need to make the column with numbers,     column 2, numeric with this command:
+  adriantest2[, 2] <- as.numeric(as.character( adriantest2[, 2] ))
+
+  #Sum all the numeric area values in each file:
+  areaSum <- data.frame(
+    File = fileName,
+    TotalArea = sum(adriantest2$Area..Area..R))
+
+  #Combine all summed files into one .csv table:
+  write.table(areaSum, 
+    "OUTPUT NAME.csv",
+    append = TRUE,
+    sep = ",",
+    row.names = FALSE,
+    col.names = FALSE)
+}
+```
+
+```{r}
+##To test individual files:
+#adriantesttest<-read.csv("/Users/Owner/Desktop/Adrian Slide Scan Data/10x_JannaAbad-01__All.csv")
+##Remove first row
+#adriantesttest2<-adriantesttest[-1,]
+##Set as numeric
+#adriantesttest2[, 2] <- as.numeric(as.character( adriantesttest2[, 2] ))
+##Sum all area values
+#sum1<-sum(adriantesttest2$Area..Area..R)
+##View sum
+#sum1
+```

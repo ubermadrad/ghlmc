@@ -1,0 +1,149 @@
+---
+title: "Xiaomin Analysis"
+author: "Janna Abad"
+date: "July 7, 2016"
+output: 
+  html_document:
+    fig_height: 3
+    fig_width: 5
+---
+<!-- Don't edit in between this line and the one below -->
+```{r include=FALSE}
+# Don't delete this chunk if you are using the DataComputing package
+library(DataComputing)
+```
+*Source file* 
+```{r, results='asis', echo=FALSE}
+includeSourceDocuments()
+```
+<!-- Don't edit the material above this line -->
+
+```{r}
+#Loading .csv files into R
+#ORO Dataframe:
+ot<-read.csv("/Users/Owner/Desktop/OROWeds/OROcsv.csv")
+#View structure
+str(ot)
+#Preview first six entries
+head(ot)
+
+#PAS Dataframe:
+pt<-read.csv("/Users/Owner/Desktop/PASWeds/PAScsv.csv")
+#View structure
+str(pt)
+#Preview first six entries
+head(pt)
+```
+
+```{r}
+#ORO Analysis - Average Areas
+#Group all values by image label
+orobylabel<-ot %>%
+  group_by(Label) %>%
+  summarise(totalarea=sum(Area))
+head(orobylabel)
+tail(orobylabel)
+
+#HFKO
+hfkoareas<-orobylabel[1:16,2]
+hfkoareas %>%
+  summarise(HFKO=mean(totalarea))
+hfkoareas %>%
+  summarise(HFKOstd=sd(totalarea))
+
+#HFWT
+hfwtareas<-orobylabel[17:32,2]
+hfwtareas %>%
+  summarise(HFWT=mean(totalarea))
+hfwtareas %>%
+  summarise(HFWTstd=sd(totalarea))
+
+#NORMKO
+normkoareas<-orobylabel[33:48,2]
+normkoareas %>%
+  summarise(NORMKO=mean(totalarea))
+normkoareas %>%
+  summarise(NORMKOstd=sd(totalarea))
+
+#NORMWT
+normwtareas<-orobylabel[49:64,2]
+normwtareas %>%
+  summarise(NORMWT=mean(totalarea))
+normwtareas %>%
+  summarise(NORMWTstd=sd(totalarea))
+```
+
+```{r}
+#PAS Analysis - Average Mean and Integrated Density
+pasbylabel<-pt %>%
+  group_by(Label) %>%
+  summarise(avgmean=mean(Mean), avgintdens=mean(IntDen))
+head(pasbylabel)
+tail(pasbylabel)
+
+#KO
+ko_means<-pasbylabel[1:12,2]
+ko_means %>%
+  summarise(KOmean=mean(avgmean))
+ko_means %>%
+  summarise(KOmeanstd=sd(avgmean))
+
+ko_intdens<-pasbylabel[1:12,3]
+ko_intdens %>%
+  summarise(KOid=mean(avgintdens))
+ko_intdens %>%
+  summarise(KOidstd=sd(avgintdens))
+
+#L_WT
+l_wt_means<-pasbylabel[13:16,2]
+l_wt_means %>%
+  summarise(LWTmean=mean(avgmean))
+l_wt_means %>%
+  summarise(LWTmeanstd=sd(avgmean))
+
+l_wt_intdens<-pasbylabel[13:16,3]
+l_wt_intdens %>%
+  summarise(LWTid=mean(avgintdens))
+l_wt_intdens %>%
+  summarise(LWTidstd=sd(avgintdens))
+
+#L_KO
+l_ko_means<-pasbylabel[17:20,2]
+l_ko_means %>%
+  summarise(LKOmean=mean(avgmean))
+l_ko_means %>%
+  summarise(LKOmeanstd=sd(avgmean))
+
+l_ko_intdens<-pasbylabel[17:20,3]
+l_ko_intdens %>%
+  summarise(LKOid=mean(avgintdens))
+l_ko_intdens %>%
+  summarise(LKOidstd=sd(avgintdens))
+
+#L_HET
+l_het_means<-pasbylabel[21:24,2]
+l_het_means %>%
+  summarise(LHETmean=mean(avgmean))
+l_het_means %>%
+  summarise(LHETmeanstd=sd(avgmean))
+
+l_het_intdens<-pasbylabel[21:24,3]
+l_het_intdens %>%
+  summarise(LHETid=mean(avgintdens))
+l_het_intdens%>%
+  summarise(LHETidstd=sd(avgintdens))
+
+#WT
+wt_means<-pasbylabel[25:36,2]
+wt_means %>%
+  summarise(WTmean=mean(avgmean))
+wt_means %>%
+  summarise(WTmeanstd=sd(avgmean))
+
+wt_intdens<-pasbylabel[25:36,3]
+wt_intdens %>%
+  summarise(WTid=mean(avgintdens))
+wt_intdens %>%
+  summarise(WTidstd=sd(avgintdens))
+#end
+```

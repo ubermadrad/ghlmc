@@ -1,0 +1,157 @@
+---
+title: "ORO & MTC Analysis for ASCB"
+author: "Janna Abad"
+date: "November 30, 2016"
+output: 
+  html_document:
+    fig_height: 3
+    fig_width: 5
+---
+<!-- Don't edit in between this line and the one below -->
+```{r include=FALSE}
+# Don't delete this chunk if you are using the DataComputing package
+library(DataComputing)
+```
+*Source file* 
+```{r, results='asis', echo=FALSE}
+includeSourceDocuments()
+```
+<!-- Don't edit the material above this line -->
+
+```{r}
+#Loading .csv files into R
+#ORO Dataframe:
+ot<-read.csv("/Users/Owner/Desktop/Summary for OROcsv.csv")
+#View structure
+str(ot)
+#Preview first six entries
+head(ot)
+
+#Average Patient Values
+#211
+patient211average<-ot[2:4,2]
+p211<-mean(patient211average)
+p211
+
+#292
+patient292average<-ot[5:8,2]
+p292<-mean(patient292average)
+p292
+
+#302
+patient302average<-ot[9:12,2]
+p302<-mean(patient302average)
+p302
+
+#387
+patient387average<-ot[13:16,2]
+p387<-mean(patient387average)
+p387
+
+#521-2
+patient521_2average<-ot[17:20,2]
+p521_2<-mean(patient521_2average)
+p521_2
+
+#563
+patient563average<-ot[21:24,2]
+p563<-mean(patient563average)
+p563
+
+#681
+patient681average<-ot[25:28,2]
+p681<-mean(patient681average)
+p681
+
+#681NL
+patient681NLaverage<-ot[29:32,2]
+p681NL<-mean(patient681NLaverage)
+p681NL
+
+#691
+patient691average<-ot[33:36,2]
+p691<-mean(patient691average)
+p691
+
+#691NL
+patient691NLaverage<-ot[37:40,2]
+p691NL<-mean(patient691NLaverage)
+p691NL
+
+#773
+patient773average<-ot[41:44,2]
+p773<-mean(patient773average)
+p773
+
+#773NL
+patient773NLaverage<-ot[45:48,2]
+p773NL<-mean(patient773NLaverage)
+p773NL
+
+#797
+patient797average<-ot[49:52,2]
+p797<-mean(patient797average)
+p797
+
+#797NL
+patient797NLaverage<-ot[53:56,2]
+p797NL<-mean(patient797NLaverage[1:3])
+p797NL
+```
+
+
+```{r}
+#Loading .csv files into R
+#MTC Dataframe:
+mt<-read.csv("/Users/Owner/Desktop/Summary for MTCcsv.csv")
+#View structure
+str(mt)
+#Preview first six entries
+head(mt)
+
+#Average Patient Values & Standard Deviation
+#681m
+patient681averagem<-mt[1:4,3]
+p681m<-mean(patient681averagem)
+p681m
+p681mstd<-sd(patient681averagem)
+p681mstd
+
+#681mNL
+patient681NLaveragem<-mt[5:9,3]
+p681mNL<-mean(patient681NLaveragem)
+p681mNL
+p681mNLstd<-sd(patient681NLaveragem)
+p681mNLstd
+
+#691m
+patient691averagem<-mt[11:14,3]
+p691m<-mean(patient691averagem)
+p691m
+p691mstd<-sd(patient691averagem)
+p691mstd
+
+#691mNL
+patient691NLaveragem<-mt[15:19,3]
+p691mNL<-mean(patient691NLaveragem)
+p691mNL
+p691mNLstd<-sd(patient691NLaveragem)
+p691mNLstd
+
+#773mNL
+patient773NLaveragem<-mt[19:25,3]
+p773mNL<-mean(patient773NLaveragem)
+p773mNL
+p773mNLstd<-sd(patient773NLaveragem)
+p773mNLstd
+
+#797mNL
+patient797NLaveragem<-mt[26:29,3]
+p797mNL<-mean(patient797NLaveragem)
+p797mNL
+p797mNLstd<-sd(patient797NLaveragem)
+p797mNLstd
+
+```
+
+
